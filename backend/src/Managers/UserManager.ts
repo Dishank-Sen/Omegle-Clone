@@ -47,17 +47,17 @@ export class UserManager {
   }
 
   initHandlers(socket: Socket) {
-    socket.on("offer-to-other", ({ sdp, roomId }: { sdp: string, roomId: string }) => {
+    socket.on("send-offer-to-server", ({ sdp, roomId }: { sdp: string, roomId: string }) => {
       console.log("offer received by other");
       this.roomManager.onOffer(roomId, sdp, socket.id);
     });
 
-    socket.on("send-answer", ({ sdp, roomId }: { sdp: string, roomId: string }) => {
+    socket.on("send-answer-to-server", ({ sdp, roomId }: { sdp: string, roomId: string }) => {
       this.roomManager.onAnswer(roomId, sdp, socket.id);
     });
 
-    socket.on("add-ice-candidate", ({ candidate, roomId }) => {
-      this.roomManager.onIceCandidates(roomId, socket.id, candidate);
+    socket.on("add-ice-candidate-to-server", ({ candidate, roomId }) => {
+      this.roomManager.onIceCandidates(roomId, candidate, socket.id);
     });
   }
 }

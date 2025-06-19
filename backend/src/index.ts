@@ -27,11 +27,11 @@ io.on('connection', (socket: Socket) => {
   })
   // userManager.addUser("randomName", socket);
 
-  socket.on("answer", async ({roomId, userAccepts}) => {
+  socket.on("response", async ({ userAccepts}) => {
     if(userAccepts){
-      socket.emit("offer-status", {roomId, offerStatus: userAccepts})
+      socket.emit("offer-status", { offerStatus: userAccepts})
     }else{
-      socket.emit("offer-status", {roomId, offerStatus: userAccepts})
+      socket.emit("offer-status", { offerStatus: userAccepts})
     }
   })
 
